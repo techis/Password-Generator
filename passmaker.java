@@ -1,3 +1,17 @@
+/*
+Writen by: Techis
+
+Later implentations of this project may include a password database of sorts where you can input the a name for the password and save the name 
+and password to a file for later use. If this is done then there will probably be a better menu added. 
+
+TO BE IMPLEMENTED:
+Legit menu
+password db of some kind
+
+All code is provided as is and I am not responsible for what YOU choose to do with it. 
+*/
+
+//Java imports needed for project
 import java.util.Scanner;
 import java.util.Random;
 import java.util.Arrays;
@@ -5,35 +19,39 @@ import java.util.ArrayList;
 
 public class passmaker{
 
-	static int [] passints;
-	static ArrayList<Integer> invalid = new ArrayList<Integer>();
-	static int reject[] = {34,35,37,38,39,40,41,42,43,44,47,58,59,60,61,62,64,91,92,93,94,95,96,123};
+	//static class variables to be used by all methods
+	static int [] passints; //array of integers that will become the password
+	static ArrayList<Integer> invalid = new ArrayList<Integer>(); //array of invalid characters, arraylist for easy comparisons later
+	static int reject[] = {34,35,37,38,39,40,41,42,43,44,47,58,59,60,61,62,64,91,92,93,94,95,96,123}; //ascii codes for invalid special characters. If you want to use them that is up to you but you will have to figure out what each is and remove it from the list
 
 	public static void main(String[] args){
-		passmaker pass = new passmaker();
+		passmaker pass = new passmaker(); //creates object since variables are non-static
 		Scanner in = new Scanner(System.in);
 		int length = 0;
 		System.out.println("How many total characters would you like in your password?");
 		length = in.nextInt();
 		passints = new int[length];
-		pass.genKey();
+		pass.genKey(); //generates the integers for the password. The for loop populates the arraylist
 		for(int i=0; i<reject.length; i++){
 			invalid.add(reject[i]);
 		}
-		System.out.println(pass.genPass());
+		System.out.println(pass.genPass()); //generates and outputs the password that has been generated
 	}
 
+	//generates a random number with an offset for valid ascii characters
 	private int genNumber(){
 		Random rand = new Random();
 		return rand.nextInt(91)+33;
 	}
 
+	//populates the key array with numbers from genNumber
 	private void genKey(){
 		for(int i=0; i<passints.length; i++){
 			passints[i] = genNumber();
 		}
 	}
 
+	//converts the numbers in the array to letters and fixes the special characters that most passwords will reject and returns a string to be directly printed.
 	private String genPass(){
 		String characters="";
 		for(int i=0; i<passints.length; i++){
