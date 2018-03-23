@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Generate a new password</title>
+  <style type="text/css" media="screen">
+		html, body, div, nav, section	{ margin: 0; padding: 0; }
+		header, nav, section	{ display: block; }
+		body 			{ color: #333; font: 16px Helvetica, Arial, sans-serif; line-height: 18px; }
+		h2				{ color: #333; }
+		a				{ color: #337810; }
+		p				{ margin: 0 0 18px; }
+		#wrapper		{ float: left; width: 100%; margin-left: -33%; }
+
+		/* Header */
+		header			{ background: #004910; border-bottom: 2px solid #aaa; }
+		header h1  	{ color: #fff; margin: 0 0 3px; padding: 24px 18px 0; }
+		header p		{ color: #ccc; font-size: 11px; font-weight: bold; padding: 0 18px; }
+
+		/* Content Style */
+		#nav		{ border-bottom: 1px solid #ccc; padding-right: 18px; }
+		nav ul	{ padding: 0 18px 9px; }
+
+		nav {border: 1px solid green; width: 160px; background-color: gray;}
+    	nav a {font: bold 12px Verdana; padding: 2px; padding-left: 4px; display: block; width: 100%; color: #337810; border-bottom: 1px solid green }
+  		html > body nav a{ /*Non IE rule*/ width:auto;}
+    	nav a:hover{background-color: yellowgreen; color:red;}
+		#content p { padding-right: 18px; }
+
+		/* Content Positioning and Size */
+		nav		{ position:fixed; right:0; width: 30%; }
+		#content		{ margin-left: 34.3%; }
+
+	</style>
+	<!--[if IE]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+    function genPass(){
+        var Length = parseInt(document.getElementById("length").value);
+        var generatedPass = "";
+        var array = new Array(length);
+
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for( var i=0; i < Length; i++ ){
+            generatedPass += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+
+        alert("Your new password is: " + generatedPass);
+    }
+  </script>
+</head>
+
+<body>
+	<header>
+		<h1>Generate a password</h1>
+		<br>
+		<br>
+	</header>
+
+	<div id="wrapper">
+			<section id="content">
+				<br>
+				<br>
+				<p>How long would you like your password to be?<input type="number" id="length" /></p>
+				<p><input type="button" value="Generate a new Password" onclick="genPass()" /></p>
+			</section>
+
+	</div>
+
+</body>
+</html>
